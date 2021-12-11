@@ -24,21 +24,29 @@ public class Message implements Comparable {
     private String timestamp = "";
     private String seqId = "";
 
-    public Message (String message, String fromId, String toId) {
+    public Message (String message, String fromId, String toId, String seqId, String timestamp) {
         this.message = message;
         this.fromId = fromId;
         this.toId = toId;
+        this.seqId = seqId;
+        this.timestamp = timestamp;
     }
 
-    public Message (String message, String fromId) {
-        this.message = message;
-        this.fromId = fromId;
-        this.toId = "";
-    }
+//    public Message (String message, String fromId) {
+//        this.message = message;
+//        this.fromId = fromId;
+//        this.toId = "";
+//    }
 
     @Override
     public String toString() {
-        return "to: " + this.toId + "\nfrom: "+ this.fromId + "\n" + this.message + "\n----\n";
+        return "Message{" +
+                "message='" + message + '\'' +
+                ", toId='" + toId + '\'' +
+                ", fromId='" + fromId + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", seqId='" + seqId + '\'' +
+                '}';
     }
 
     public int compareTo(Object o) {

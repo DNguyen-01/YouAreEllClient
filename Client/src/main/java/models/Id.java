@@ -54,6 +54,12 @@ public class Id {
 
     @Override
     public String toString() {
-        return this.name + " (" + this.github + ") ";
+        return "Id{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", github='" + github + '\'' +
+                ", idToRegister='" + idToRegister + '\'' +
+                ", githubName='" + githubName + '\'' +
+                '}';
     }
 }

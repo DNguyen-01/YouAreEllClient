@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
+
 public class SimpleShell {
 
 
@@ -25,6 +26,7 @@ public class SimpleShell {
         
         String commandLine;
         BufferedReader console = new BufferedReader
+                //this console reads the input
                 (new InputStreamReader(System.in));
 
         ProcessBuilder pb = new ProcessBuilder();
