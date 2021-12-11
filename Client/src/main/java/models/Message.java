@@ -1,5 +1,7 @@
 package models;
 
+
+
 /* 
  * POJO for an Message object
  *
@@ -13,6 +15,7 @@ package models;
 
 *
  */
+
 public class Message implements Comparable {
 
     private String message = "";

@@ -1,13 +1,24 @@
 package youareell;
 
 import controllers.*;
+// import org.springframework.boot.SpringApplication;
+// import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+// @SpringBootApplication
 public class YouAreEll {
 
+    MessageController messageController;
+    IdController idController;
     TransactionController tt;
 
     public YouAreEll (TransactionController t) {
         this.tt = t;
+    }
+
+    public YouAreEll(MessageController messageController, IdController idController) {
+        this.idController = idController;
+        this.messageController = messageController;
     }
 
     public static void main(String[] args) {
@@ -18,6 +29,10 @@ public class YouAreEll {
         ));
         System.out.println(urlhandler.MakeURLCall("/ids", "GET", ""));
         System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
+    }
+
+    private String MakeURLCall(String s, String get, String s1) {
+        return "";
     }
 
     public String get_ids() {
