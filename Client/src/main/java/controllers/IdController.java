@@ -3,13 +3,14 @@ package controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Id;
 
 
 public class IdController {
 
     private HashMap<String, Id> allIds;
-
+    private ObjectMapper objectMapper = new ObjectMapper();
     Id myId;
 
     public ArrayList<Id> getIds() {
@@ -20,7 +21,6 @@ public class IdController {
         // create json from id
         // call server, get json result Or error
         // result json to Id obj
-
         return null;
     }
 

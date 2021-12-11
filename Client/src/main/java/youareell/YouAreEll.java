@@ -1,11 +1,7 @@
 package youareell;
 
 import controllers.*;
-// import org.springframework.boot.SpringApplication;
-// import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-// @SpringBootApplication
 public class YouAreEll {
 
     MessageController messageController;
@@ -20,6 +16,7 @@ public class YouAreEll {
         this.idController = idController;
         this.messageController = messageController;
     }
+
 
     public static void main(String[] args) {
         // hmm: is this Dependency Injection?

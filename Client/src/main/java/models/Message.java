@@ -32,11 +32,6 @@ public class Message implements Comparable {
         this.timestamp = timestamp;
     }
 
-//    public Message (String message, String fromId) {
-//        this.message = message;
-//        this.fromId = fromId;
-//        this.toId = "";
-//    }
 
     @Override
     public String toString() {

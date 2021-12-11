@@ -4,9 +4,10 @@ package models;
  * POJO for an Id object
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Id {
-
+    @JsonProperty
     private String uid = "";
     private String name = "";
     private String github = "";

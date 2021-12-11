@@ -13,6 +13,7 @@ import java.util.List;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
 
+
 public class SimpleShell {
 
 
@@ -66,10 +67,11 @@ public class SimpleShell {
                     continue;
                 }
 
+
                 // Specific Commands.
 
                 // ids
-                if (list.contains("ids")) {
+                if (list.contains("ids"))  {
                     String results = webber.get_ids();
                     SimpleShell.prettyPrint(results);
                     continue;

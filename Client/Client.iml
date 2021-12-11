@@ -9,20 +9,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:unknown" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:unknown" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.h2database:h2:unknown" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:unknown" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.13" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0" level="project" />
   </component>
 </module>

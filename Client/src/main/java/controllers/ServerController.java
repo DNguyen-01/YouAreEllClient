@@ -4,6 +4,7 @@ package controllers;
 import models.Id;
 
 //public class ServerController() {
+//
 //    private String rootURL = "http://zipcode.rocks:8085";
 //
 //    private static ServerController svr = new ServerController();
@@ -16,6 +17,7 @@ import models.Id;
 //
 //    public JsonString idGet() {
 //        // url -> /ids/
+//
 //        // send the server a get with url
 //        // return json from server
 //    }
