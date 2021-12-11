@@ -36,7 +36,7 @@ public class YouAreEll {
     }
 
     public String get_ids() {
-        return tt.makecall("/ids", "GET", "");
+        return tt.makeCall("/ids", "GET", "");
     }
 
     public String get_messages() {

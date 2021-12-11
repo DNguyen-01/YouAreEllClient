@@ -1,11 +1,5 @@
 package models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javaax.peristence.Id;
-import javax.persistence.Table;
-
-
 /* 
  * POJO for an Id object
  */
@@ -16,6 +10,8 @@ public class Id {
     private String uid = "";
     private String name = "";
     private String github = "";
+    private String idToRegister;
+    private String githubName;
 
     public Id() {
     }
@@ -24,6 +20,12 @@ public class Id {
         this.uid = uid;
         this.name = name;
         this.github = githubId;
+
+    }
+
+    public Id(String uid, String github) {
+        this.idToRegister = uid;
+        this.githubName = github;
     }
 
     public String getUid() {

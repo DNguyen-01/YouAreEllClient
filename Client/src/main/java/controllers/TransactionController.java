@@ -12,15 +12,17 @@ public class TransactionController {
     public TransactionController(MessageController m, IdController j) {}
 
     public List<Id> getIds() {
-
+        return idCtrl.getIds();
     }
-    public String postId(String idtoRegister, String githubName) {
-        Id tid = new Id(idtoRegister, githubName);
+
+    public String postId(String idToRegister, String githubName) {
+        Id tid = new Id(idToRegister, githubName);
         tid = idCtrl.postId(tid);
         return ("Id registered.");
     }
 
-    public String makecall(String s, String get, String s1) {
+    public String makeCall(String s, String get, String s1) {
 
+        return "";
     }
 }
