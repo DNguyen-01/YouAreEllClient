@@ -17,7 +17,7 @@ public class Id {
     public Id() {
     }
 
-    public Id (String userid, String name, String githubId) {
+    public Id(String userid, String name, String githubId) {
         this.uid = userid;
         this.name = name;
         this.github = githubId;
