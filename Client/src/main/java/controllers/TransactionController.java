@@ -9,7 +9,19 @@ public class TransactionController {
     private MessageController msgCtrl;
     private IdController idCtrl;
 
-    public TransactionController(MessageController m, IdController j) {}
+    public TransactionController(MessageController m, IdController j) {
+        //initialize the msgCtrl and IdCtrl
+        this.msgCtrl = m;
+        this.idCtrl = j;
+    }
+
+    public IdController getIdCtrl() {
+        return idCtrl;
+    }
+
+    public MessageController getMsgCtrl() {
+        return msgCtrl;
+    }
 
     public List<Id> getIds() {
         return idCtrl.getIds();

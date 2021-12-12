@@ -10,6 +10,8 @@ public class YouAreEll {
 
     public YouAreEll (TransactionController t) {
         this.tt = t;
+        this.messageController = t.getMsgCtrl();
+        this.idController = t.getIdCtrl();
     }
 
     public YouAreEll(MessageController messageController, IdController idController) {
@@ -25,6 +27,7 @@ public class YouAreEll {
                 new MessageController(), new IdController()
         ));
         System.out.println(urlhandler.MakeURLCall("/ids", "GET", ""));
+        urlhandler.idController.getIds(); //had the urlHandler to get the id
         System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
     }
 

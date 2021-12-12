@@ -1,8 +1,12 @@
 package controllers;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.net.http.*;
+import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Id;
 
@@ -14,6 +18,24 @@ public class IdController {
     Id myId;
 
     public ArrayList<Id> getIds() {
+        //implement the client request and response
+        try {
+            HttpClient client = HttpClient.newBuilder().build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://zipcode.rocks:8085/ids"))
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            List<Id> idList = objectMapper.readValue(response.body(), new TypeReference<List<Id>>() {
+            });
+//            System.out.println(response.statusCode());
+            System.out.println(response.body());
+            System.out.println(idList.get(0).getGithub());
+        }
+        catch (Exception e){
+            System.out.println("Exception: " + e.getMessage());
+        }
         return null;
     }
 
