@@ -9,6 +9,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Id;
+import models.SupportedHttpMethod;
 
 
 public class IdController {
@@ -20,18 +21,13 @@ public class IdController {
     public ArrayList<Id> getIds() {
         //implement the client request and response
         try {
-            HttpClient client = HttpClient.newBuilder().build();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://zipcode.rocks:8085/ids"))
-//                    .header("Content-Type", "application/json") might not be needed
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            List<Id> idList = objectMapper.readValue(response.body(), new TypeReference<List<Id>>() {
+            HttpResponse<String> response = HTTPController.sendRequest("/ids", SupportedHttpMethod.GET, null);
+            ArrayList<Id> idList = objectMapper.readValue(response.body(), new TypeReference<ArrayList<Id>>() {
             });
-//            System.out.println(response.statusCode());
-            System.out.println(response.body());
-            System.out.println(idList.get(0).getGithub());
+////            System.out.println(response.statusCode());
+//            System.out.println(response.body());
+//            System.out.println(idList.get(0).getGithub());
+            return idList;
         }
         catch (Exception e){
             System.out.println("Exception: " + e.getMessage());
@@ -39,42 +35,45 @@ public class IdController {
         return null;
     }
 
-    public Id postId(Id id) {
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"uid\":\"uid\",")
-                .append("\"name\":\"\"name")
-                .append("\"github\":\"github\"")
-                .append("}").toString();
+    public Id postId(Id id) { //adding to the collection, requesting the server to accept the entity
 
         try {
-            HttpClient httpClient = (HttpClient) HttpClient.newBuilder();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .POST(HttpRequest.BodyPublishers.ofString(json))
-                    .uri(URI.create("https://zipcode.rocks:8085/ids"))
-                    .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
-                    .header("Content-Type", "application/json")
-                    .build();
+            String json = HTTPController.objectMapper.writeValueAsString(id);
 
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            List<Id> idList = objectMapper.readValue(response.body(), new TypeReference<List<Id>>() {
+            HttpResponse<String> response = HTTPController.sendRequest("/ids", SupportedHttpMethod.POST, json);
+            Id responseId = objectMapper.readValue(response.body(), new TypeReference<Id>() {
             });
-            System.out.println(response.body());
+            System.out.println(responseId);
 
+            return  responseId;
         }
         catch(Exception e) {
 
-            // create json from id
-            // call server, get json result Or error
-            // result json to Id obj
+            System.out.println("Exception: " + e.getMessage());
         }
         return null;
     }
 
 
 
-    public Id putId(Id id) {
+    public Id putId(Id id) { //method call when you have to modify a single resource, which is already a part of the receiver collection
+
+        try {
+            String json = HTTPController.objectMapper.writeValueAsString(id);
+
+            HttpResponse<String> response = HTTPController.sendRequest("/ids", SupportedHttpMethod.PUT, json);
+            Id responseId = objectMapper.readValue(response.body(), new TypeReference<Id>() {
+            });
+            System.out.println(responseId);
+
+            return  responseId;
+        }
+        catch(Exception e) {
+
+            System.out.println("Exception: " + e.getMessage());
+        }
+
         return null;
     }
  

@@ -2,6 +2,7 @@ package views;
 
 import controllers.IdController;
 import controllers.MessageController;
+import models.Id;
 import youareell.YouAreEll;
 
 import java.io.BufferedReader;
@@ -70,19 +71,28 @@ public class SimpleShell {
 
                 // Specific Commands.
 
-                // ids
+                // ids - returning us the list of ids
                 if (list.contains("ids"))  {
-                    String results = webber.get_ids();
-                    SimpleShell.prettyPrint(results);
+                    if (list.size() == 1) {
+                        String results = webber.get_ids();
+                        SimpleShell.prettyPrint(results);
+                    }else if(list.size() == 3){
+                        String results = webber.post_id(new Id("",list.get(1),list.get(2)));
+                        SimpleShell.prettyPrint(results);
+                    }else {
+                        SimpleShell.prettyPrint("Invalid Use of Ids!");
+                    }
                     continue;
                 }
 
+
                 // messages
-                if (list.contains("messages")) {
+                if (list.contains("listMessages")) {
                     String results = webber.get_messages();
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
+
                 // you need to add a bunch more.
 
                 //!! command returns the last command in history

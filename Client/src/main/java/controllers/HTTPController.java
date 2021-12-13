@@ -1,46 +1,53 @@
 package controllers;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import models.SupportedHttpMethod;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest.Builder;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 public class HTTPController {
-//
-//    private final static String rootURL = "http://zipcode.rocks:8085";
-//
-//
-//    public static void main(String[] args) {
-//        // Create an instance of HttpClient.
-//        HttpClient client = new HttpClient();
-//
-//        // Create a method instance.
-//        GetMethod method = new GetMethod("http://zipcode.rocks:8085");
-//
-//        // Provide custom retry handler is necessary
-//        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
-//                new DefaultHttpMethodRetryHandler(3, false));
-//
-//        try {
-//            // Execute the method.
-//            int statusCode = client.executeMethod(method);
-//
-//            if (statusCode != HttpStatus.SC_OK) {
-//                System.err.println("Method failed: " + method.getStatusLine());
-//            }
-//
-//            // Read the response body.
-//            byte[] responseBody = method.getResponseBody();
-//
-//            // Deal with the response.
-//            // Use caution: ensure correct character encoding and is not binary data
-//            System.out.println(new String(responseBody));
-//
-//        } catch (HttpException e) {
-//            System.err.println("Fatal protocol violation: " + e.getMessage());
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            System.err.println("Fatal transport error: " + e.getMessage());
-//            e.printStackTrace();
-//        } finally {
-//            // Release the connection.
-//            method.releaseConnection();
-//        }
-//    }
+
+    public static ObjectMapper objectMapper = new ObjectMapper();
+    private static HttpClient client = HttpClient.newBuilder().build();
+    private static final String baseUrl = "http://zipcode.rocks:8085";
+
+    public static HttpResponse<String> sendRequest(String path, SupportedHttpMethod httpMethod, String body) {
+
+        //helper class/method to make call/receive data from the client and translate it into
+        //into the defined models -> streamline method calls
+
+        //base to be built our post
+        try {
+            //header to identify the request - typically aren't used in the Get
+            Builder builder = HttpRequest.newBuilder().uri(URI.create(baseUrl + path)).header("Content-Type", "application/json");
+            switch (httpMethod) {
+                case GET:
+                    builder = builder.GET();
+                    break;
+                case POST:
+                    builder = builder.POST(HttpRequest.BodyPublishers.ofString(body));
+                    break;
+                case PUT:
+                    builder = builder.PUT(HttpRequest.BodyPublishers.ofString(body));
+                    break;
+            }
+            HttpRequest request = builder.build();
+            return client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (Exception e){
+
+            System.out.println("Exception: " + e.getMessage());
+
+            return null;
+        }
+    }
+
+
+
+
 }

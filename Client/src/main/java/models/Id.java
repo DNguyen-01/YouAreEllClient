@@ -8,7 +8,7 @@ package models;
 
 public class Id {
 //    @JsonProperty
-    private String uid = "";
+    private String userid = "";
     private String name = "";
     private String github = "";
     private String idToRegister;
@@ -18,7 +18,7 @@ public class Id {
     }
 
     public Id(String userid, String name, String githubId) {
-        this.uid = userid;
+        this.userid = userid;
         this.name = name;
         this.github = githubId;
 
@@ -29,12 +29,12 @@ public class Id {
         this.githubName = github;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUserid() {
+        return userid;
     }
 
     public void setUserid(String userid) {
-       this.uid = userid;
+       this.userid = userid;
     }
 
     public String getName() {
@@ -56,7 +56,7 @@ public class Id {
     @Override
     public String toString() {
         return "Id{" +
-                "uid='" + uid + '\'' +
+                "uid='" + userid + '\'' +
                 ", name='" + name + '\'' +
                 ", github='" + github + '\'' +
                 ", idToRegister='" + idToRegister + '\'' +
