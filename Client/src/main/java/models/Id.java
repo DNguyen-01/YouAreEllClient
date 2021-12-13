@@ -26,7 +26,7 @@ public class Id {
 
     public Id(String userid, String github) {
         this.idToRegister = userid;
-        this.githubName = github;
+        this.github = github;
     }
 
     public String getUserid() {

@@ -74,4 +74,17 @@ public class YouAreEll {
         return idController.postId(id).toString();
     }
 
+    public String put_id(Id id){
+
+        return  idController.putId(id).toString();
+    }
+
+    public IdController getIdController() {
+        return idController;
+    }
+
+    public String get_messages_by_githubId(Id id){
+
+        return messageController.getMessagesForId(id).toString();
+    }
 }

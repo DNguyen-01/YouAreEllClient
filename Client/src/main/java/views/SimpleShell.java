@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
 
@@ -25,6 +27,7 @@ public class SimpleShell {
     public static void main(String[] args) throws java.io.IOException {
 
         YouAreEll webber = new YouAreEll(new MessageController(), new IdController());
+        Map<String, Id> gitHubNameId = new HashMap<>();
         
         String commandLine;
         BufferedReader console = new BufferedReader
@@ -77,21 +80,43 @@ public class SimpleShell {
                         String results = webber.get_ids();
                         SimpleShell.prettyPrint(results);
                     }else if(list.size() == 3){
-                        String results = webber.post_id(new Id("",list.get(1),list.get(2)));
+                        String name = list.get(1), gitHubId = list.get(2), results = null;
+                        Id id = new Id();
+                        if(gitHubNameId.get(gitHubId) == null) {
+                            id.setName(name);
+                            id.setGithub(gitHubId);
+                            id = webber.getIdController().postId(id);
+                            results = id.toString();
+                        }else {
+                            id = gitHubNameId.get(gitHubId);
+                            id.setName(name);
+                            System.out.println(id);
+                            results = webber.put_id(id);
+                        }
                         SimpleShell.prettyPrint(results);
-                    }else {
+                        gitHubNameId.put(gitHubId,id);
+                    }
+                    else {
                         SimpleShell.prettyPrint("Invalid Use of Ids!");
                     }
                     continue;
                 }
 
-
                 // messages
-                if (list.contains("listMessages")) {
-                    String results = webber.get_messages();
-                    SimpleShell.prettyPrint(results);
+                if (list.contains("messages")) {
+                    if(list.size() == 1){
+                        String results = webber.get_messages();
+                        SimpleShell.prettyPrint(results);
+                    }else if(list.size() == 2){
+                        Id id = new Id("", list.get(1));
+                        String results = webber.get_messages_by_githubId(id);
+                        SimpleShell.prettyPrint(results);
+                    }else{
+                        SimpleShell.prettyPrint("Invalid Use of Messages!");
+                    }
                     continue;
                 }
+
 
                 // you need to add a bunch more.
 
