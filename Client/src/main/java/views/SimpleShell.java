@@ -3,6 +3,7 @@ package views;
 import controllers.IdController;
 import controllers.MessageController;
 import models.Id;
+import models.Message;
 import youareell.YouAreEll;
 
 import java.io.BufferedReader;
@@ -117,6 +118,50 @@ public class SimpleShell {
                     continue;
                 }
 
+                //sending messages
+                if(list.size() >= 1 && list.get(0).equals("send")){
+                    int singleQuoteStartIndex = commandLine.indexOf('\''); //indexof -- searches from right to left
+                    int singleQuoteEndIndex = commandLine.lastIndexOf('\''); //lastIndexof -- searches from right to left
+                    if(singleQuoteStartIndex == singleQuoteEndIndex){ //checks if there are no index, parse the entire string
+                        singleQuoteStartIndex = commandLine.length()-1;
+                        singleQuoteEndIndex = commandLine.length()-1;
+                    }
+                    list = new ArrayList<>();
+                    String firstPart = commandLine.substring(0, singleQuoteStartIndex);
+                    String lastPart = commandLine.substring(singleQuoteEndIndex+1); //give me a substring that has an index w/ an outbound, returns an empty string if there is no part after the single quote
+                    String[] beforeMessage = firstPart.split(" ");
+                    for(String word : beforeMessage){
+                        list.add(word);
+                    }
+                    if(singleQuoteStartIndex != singleQuoteEndIndex){
+                        list.add(commandLine.substring(singleQuoteStartIndex+1, singleQuoteEndIndex));
+                        String[] afterMessage = lastPart.split(" ");
+                        for (String word : afterMessage) {
+                            if (!word.equals("")) {
+                                list.add(word);
+                            }
+                        }
+                    }
+                    if(list.size() == 3){
+                        Message message = new Message();
+                        message.setMessage(list.get(2));
+                        message.setToid(list.get(1));
+                        SimpleShell.prettyPrint(webber.post_message(message));
+                    }else if (list.size() == 5 && list.get(3).equals("to")){
+                        Message message = new Message();
+                        message.setMessage(list.get(2));
+                        message.setToid(list.get(4));
+                        message.setFromid(list.get(1));
+                        SimpleShell.prettyPrint(webber.post_message(message));
+                    }else {
+                        SimpleShell.prettyPrint("Invalid Use of Send!");
+                    }
+                    continue;
+                }
+
+
+
+                /* TODO: complete the send message function */
 
                 // you need to add a bunch more.
 

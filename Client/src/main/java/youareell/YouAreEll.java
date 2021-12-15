@@ -74,6 +74,11 @@ public class YouAreEll {
         return idController.postId(id).toString();
     }
 
+    public String post_message(Message message){
+
+        return messageController.postMessage(message).toString();
+    }
+
     public String put_id(Id id){
 
         return  idController.putId(id).toString();
